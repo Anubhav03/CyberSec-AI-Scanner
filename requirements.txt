@@ -13,7 +13,8 @@ sentence-transformers>=2.5.1
 chromadb>=0.5.0
 
 # ---- Document processing and scanning ----
-python-magic-bin>=0.4.14
+python-magic>=0.4.27 ; platform_system!="Windows"
+python-magic-bin>=0.4.14 ; platform_system=="Windows"
 regex>=2023.10.3
 pdfkit>=1.0.0
 
