@@ -10,7 +10,9 @@ litellm>=1.20.0
 langchain-cohere>=0.1.0
 
 # ---- Vector Database (Chroma) ----
-chromadb>=0.5.0
+# ---- Vector Database (Chroma) ----
+chromadb==0.4.22
+
 
 # ---- Document processing and scanning ----
 python-magic>=0.4.27 ; platform_system!="Windows"
