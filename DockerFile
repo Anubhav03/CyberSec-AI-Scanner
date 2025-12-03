@@ -1,19 +1,26 @@
-FROM python:3.11.2
+FROM python:3.11-slim
 
 WORKDIR /app
+
+# Install system dependencies needed for some Python packages
+RUN apt-get update && apt-get install -y \
+    curl \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Expose port for API (port 8000) and Streamlit (8501)
-EXPOSE 8000
-EXPOSE 8501
-
-# Use Supervisor to run both services
+# Install supervisor
 RUN pip install supervisor
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# Only expose one port (Railway will map PORT automatically)
+EXPOSE 3000
 
-CMD ["supervisord", "-n"]
+# Copy supervisor config
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+
+# Start supervisor
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
