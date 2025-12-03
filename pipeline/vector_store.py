@@ -3,7 +3,7 @@ import cohere
 from langchain_cohere import CohereEmbeddings
 from langchain_community.vectorstores import Chroma
 
-VECTOR_DB_PATH = os.getenv("VECTOR_DB_PATH", "./embeddings/chroma")
+VECTOR_DB_PATH = os.getenv("VECTOR_DB_PATH", "/tmp/chroma")
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 
 def build_vector_store(chunks):
