@@ -5,13 +5,13 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install supervisor OS package
+RUN apt-get update && apt-get install -y supervisor
+
 COPY . .
 
-# Expose port for API (port 8000) and Streamlit (8501)
-EXPOSE 3000
 
-# Use Supervisor to run both services
-RUN pip install supervisor
+EXPOSE 3000
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
