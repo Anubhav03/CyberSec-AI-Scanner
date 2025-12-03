@@ -29,7 +29,7 @@ def build_vector_store(chunks):
             for chunk in chunks
         ],
         embedding=embeddings,
-        persist_directory=VECTOR_DB_PATH
+        persist_directory=None
     )
 
     vectordb.persist()
