@@ -1,4 +1,8 @@
 from .base_agent_settings import create_agent
+import os
+os.environ["CREWAI_DISABLE_TELEMETRY"] = "true"
+os.environ["CREWAI_ALLOW_LOCAL_MODE"] = "true"
+os.environ["CREWAI_STORAGE_BACKEND"] = "memory"   # ⬅ key fix
 
 summarizer_agent = create_agent(
     role="System Architecture Summarizer",
