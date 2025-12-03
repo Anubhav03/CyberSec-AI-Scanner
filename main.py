@@ -1,3 +1,9 @@
+import os
+
+# Disable Crewai automatic ChromaDB / RAG initialization
+os.environ["CREWAI_STORAGE_BACKEND"] = "none"
+os.environ["CREWAI_RAG_ENABLED"] = "false"
+
 from pathlib import Path
 from typing import Any
 
