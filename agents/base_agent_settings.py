@@ -2,6 +2,12 @@ import os
 from crewai import Agent, LLM
 from dotenv import load_dotenv
 
+
+os.environ["CREWAI_DISABLE_TELEMETRY"] = "true"
+os.environ["CREWAI_ALLOW_LOCAL_MODE"] = "true"
+os.environ["CREWAI_STORAGE_BACKEND"] = "memory"   # ⬅ key fix
+
+
 load_dotenv()
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
