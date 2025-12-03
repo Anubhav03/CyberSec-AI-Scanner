@@ -1,4 +1,8 @@
 from crewai import Task
+import os
+os.environ["CREWAI_DISABLE_TELEMETRY"] = "true"
+os.environ["CREWAI_ALLOW_LOCAL_MODE"] = "true"
+os.environ["CREWAI_STORAGE_BACKEND"] = "memory"   # ⬅ key fix
 
 def create_red_team_task(agent):
     return Task(
