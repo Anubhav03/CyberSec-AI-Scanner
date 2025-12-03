@@ -1,18 +1,25 @@
 from typing import List
 from langchain_community.vectorstores import Chroma
 
-
 def retrieve_relevant_code(query: str, vectordb: Chroma, top_k: int = 5) -> str:
-    """Searches vector DB for code or config relevant to the prompt."""
+    """Search the vector DB using Cohere embeddings and return formatted matches."""
+    
     results = vectordb.similarity_search(query, k=top_k)
 
-    formatted = []
+    if not results:
+        return "⚠️ No relevant code found for this query."
+
+    formatted_results = []
+
     for r in results:
-        formatted.append(
-            f"🔥 MATCH FROM: {r.metadata['file']}\n"
-            f"📄 PATH: {r.metadata['path']}\n\n"
-            f"{r.page_content}\n"
-            "─" * 50
+        filename = r.metadata.get("filename", "Unknown File")
+        path = r.metadata.get("path", "Unknown Path")
+
+        formatted_results.append(
+            f"🔥 **MATCH SOURCE:** {filename}\n"
+            f"📁 **Path:** {path}\n\n"
+            f"```\n{r.page_content}\n```\n"
+            + ("─" * 50)
         )
 
-    return "\n\n".join(formatted)
+    return "\n\n".join(formatted_results)
