@@ -1,5 +1,9 @@
 from crewai import Task
 from typing import List, Dict
+import os
+os.environ["CREWAI_DISABLE_TELEMETRY"] = "true"
+os.environ["CREWAI_ALLOW_LOCAL_MODE"] = "true"
+os.environ["CREWAI_STORAGE_BACKEND"] = "memory"   # ⬅ key fix
 
 
 def extract_dependency_signals(files: List[Dict]) -> str:
