@@ -13,7 +13,7 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 sys.path.append(str(ROOT_DIR))
 
 # Backend endpoint (supports deployment override)
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
 UPLOAD_ENDPOINT = f"{BACKEND_URL}/api/upload"
 
 # UI settings
